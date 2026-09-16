@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TruthLens — AI-Powered News Analysis</title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="topbar">
+
+        <div class="brand">
+
+            <div class="logo">TL</div>
+
+            <div class="brand-text">
+                <h1>TruthLens</h1>
+                <p>AI-Powered News Analysis</p>
+            </div>
+
+        </div>
+
+        <div class="status">
+            <span class="dot"></span>
+            <span>System Online</span>
+        </div>
+
+    </header>
+
+
+    <!-- MAIN -->
+    <main class="container">
+
+        <!-- HERO SECTION -->
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <p class="eyebrow">
+                    SMART NEWS ANALYSIS
+                </p>
+
+                <h2>
+                    Check the language.
+                    <br>
+                    <span>Think before you share.</span>
+                </h2>
+
+                <p class="subtitle">
+                    Paste a headline or news article and TruthLens
+                    analyzes its language using a trained
+                    machine-learning model.
+                </p>
+
+            </div>
+
+
+            <div class="hero-card">
+
+                <div class="hero-icon">
+                    ✦
+                </div>
+
+                <span>POWERED BY</span>
+
+                <strong>
+                    TF-IDF + Naive Bayes
+                </strong>
+
+                <small>
+                    AI Text Classification
+                </small>
+
+            </div>
+
+        </section>
+
+
+        <!-- MAIN CONTENT GRID -->
+        <section class="grid">
+
+            <!-- NEWS ANALYZER -->
+            <div class="card analyzer">
+
+                <div class="card-head">
+
+                    <div>
+
+                        <p class="section-label">
+                            ANALYSIS
+                        </p>
+
+                        <h3>
+                            News Analyzer
+                        </h3>
+
+                        <p>
+                            Paste a headline or article to analyze its language.
+                        </p>
+
+                    </div>
+
+                    <button
+                        id="sampleBtn"
+                        class="ghost"
+                        type="button">
+                        Try Sample
+                    </button>
+
+                </div>
+
+
+                <!-- TEXT INPUT -->
+                <div class="textarea-wrap">
+
+                    <textarea
+                        id="newsText"
+                        maxlength="10000"
+                        placeholder="Paste a news headline or article here..."
+                    ></textarea>
+
+                    <span class="textarea-hint">
+                        Minimum 10 characters
+                    </span>
+
+                </div>
+
+
+                <!-- INPUT FOOTER -->
+                <div class="input-footer">
+
+                    <span id="counter">
+                        0 characters
+                    </span>
+
+                    <button
+                        id="checkBtn"
+                        class="primary"
+                        type="button">
+
+                        Analyze News
+
+                        <span>→</span>
+
+                    </button>
+
+                </div>
+
+
+                <!-- LOADING -->
+                <div
+                    id="loading"
+                    class="loading hidden">
+
+                    <span class="spinner"></span>
+
+                    <span>
+                        Analyzing text...
+                    </span>
+
+                </div>
+
+
+                <!-- ERROR -->
+                <div
+                    id="error"
+                    class="error hidden">
+                </div>
+
+
+                <!-- RESULT -->
+                <div
+                    id="result"
+                    class="result hidden">
+
+                    <!-- RESULT HEADER -->
+                    <div class="result-main">
+
+                        <div
+                            id="badge"
+                            class="badge">
+                            REAL
+                        </div>
+
+                        <div>
+
+                            <span class="muted">
+                                MODEL PREDICTION
+                            </span>
+
+                            <h3 id="prediction">
+                                REAL NEWS
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CONFIDENCE -->
+                    <div class="confidence">
+
+                        <div class="confidence-row">
+
+                            <span>
+                                Classification confidence
+                            </span>
+
+                            <strong id="confidence">
+                                0%
+                            </strong>
+
+                        </div>
+
+                        <div class="bar">
+                            <div id="barFill"></div>
+                        </div>
+
+                    </div>
+
+
+                    <!-- EXPLANATION -->
+                    <p
+                        id="explanation"
+                        class="explanation">
+                    </p>
+
+
+                    <!-- RESULT STATS -->
+                    <div class="stats">
+
+                        <div>
+
+                            <span>
+                                Usable words
+                            </span>
+
+                            <strong id="wordCount">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Model
+                            </span>
+
+                            <strong id="modelName">
+                                —
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- HOW IT WORKS -->
+            <aside class="card side">
+
+                <p class="section-label">
+                    INSIDE TRUTHLENS
+                </p>
+
+                <h3>
+                    How it works
+                </h3>
+
+
+                <!-- STEP 1 -->
+                <div class="step">
+
+                    <b>01</b>
+
+                    <div>
+
+                        <strong>
+                            Clean
+                        </strong>
+
+                        <p>
+                            The text is normalized and common
+                            words are removed.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STEP 2 -->
+                <div class="step">
+
+                    <b>02</b>
+
+                    <div>
+
+                        <strong>
+                            Convert
+                        </strong>
+
+                        <p>
+                            TF-IDF converts the text into
+                            numerical features.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STEP 3 -->
+                <div class="step">
+
+                    <b>03</b>
+
+                    <div>
+
+                        <strong>
+                            Classify
+                        </strong>
+
+                        <p>
+                            Naive Bayes compares the text
+                            against learned patterns.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STEP 4 -->
+                <div class="step">
+
+                    <b>04</b>
+
+                    <div>
+
+                        <strong>
+                            Explain
+                        </strong>
+
+                        <p>
+                            The result includes a prediction,
+                            confidence and explanation.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- NOTICE -->
+                <div class="notice">
+
+                    <strong>
+                        Keep in mind
+                    </strong>
+
+                    <p>
+                        TruthLens analyzes language patterns.
+                        It does not independently verify facts.
+                        Always check important claims with
+                        reliable sources.
+                    </p>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+
+        <!-- METRICS -->
+        <section class="card metrics">
+
+            <div class="metric">
+
+                <span>
+                    Training examples
+                </span>
+
+                <strong id="trainingExamples">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="metric">
+
+                <span>
+                    Vocabulary
+                </span>
+
+                <strong id="vocabulary">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="metric">
+
+                <span>
+                    Validation accuracy
+                </span>
+
+                <strong id="accuracy">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="metric">
+
+                <span>
+                    Platform
+                </span>
+
+                <strong>
+                    Spring Boot
+                </strong>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+
+            <strong>
+                TruthLens
+            </strong>
+
+            <span>•</span>
+
+            AI-Powered News Analysis
+
+        </p>
+
+        <small>
+            Analyze responsibly. Verify important information.
+        </small>
+
+    </footer>
+
+
+    <script src="/script.js"></script>
+
+</body>
+
+</html>
