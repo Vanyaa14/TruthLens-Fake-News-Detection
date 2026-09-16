@@ -1,258 +1,372 @@
-# TruthLens — Fake News Detection System
+# 📰 TruthLens — AI-Powered News Analysis
 
-A Java AI/ML academic project that classifies news text as **REAL** or **FAKE** using a text-processing pipeline based on **TF-IDF** and **Multinomial Naive Bayes**.
+---
 
-> **Important:** This project is an educational classifier. It does not verify facts on the internet and a prediction is not proof that a story is true or false.
+## 🌐 Live Application
 
-## Features
+👉 **Try TruthLens here:**
+https://truthlens-fake-news-detection-x344.onrender.com
 
-- Java 17 + Spring Boot
-- TF-IDF text feature extraction implemented in Java
-- Multinomial Naive Bayes classifier implemented in Java
-- Training from a CSV dataset
-- Automatic 80/20 validation split
-- Accuracy shown on the web dashboard
-- REST API for predictions
-- Responsive web interface
-- Health endpoint for deployment
-- Docker support
-- Fully runnable from the command line
+TruthLens is an AI-powered web application that analyzes news text and classifies it as **likely REAL or FAKE** using Machine Learning.
 
-## Requirements
+---
 
-- Java 17 or newer
-- Maven 3.9+ (or use an IDE with Maven support)
-- Internet connection the first time Maven downloads dependencies
+## 📌 Overview
 
-Check:
+TruthLens is an AI-powered Fake News Detection system designed to help users analyze news content and identify potentially misleading information.
 
-```bash
-java -version
-mvn -version
+The system processes submitted news text using Natural Language Processing (NLP), converts the text into numerical features using **TF-IDF**, and applies a **Multinomial Naive Bayes** classifier to generate a prediction.
+
+The application also provides a confidence score, explanation, word count, and model information.
+
+---
+
+## 🎯 Objectives
+
+* Develop an intelligent system for news classification
+* Identify potentially fake or misleading news text
+* Apply Machine Learning to a real-world problem
+* Use Natural Language Processing for text analysis
+* Provide a simple and user-friendly interface
+* Display prediction confidence and explanation
+* Encourage users to verify important information using trusted sources
+
+---
+
+## ❗ Problem Statement
+
+The rapid spread of misleading and false information through online platforms makes it difficult for users to distinguish reliable information from potentially false content.
+
+Manual verification of every news claim can be time-consuming. TruthLens addresses this problem by providing an AI-assisted system that analyzes the linguistic patterns of submitted news text and classifies it as **REAL or FAKE**.
+
+---
+
+## 💡 Proposed Solution
+
+TruthLens uses a Machine Learning pipeline to analyze submitted news text.
+
+### 🔄 Processing Pipeline
+
+**News Text → Text Preprocessing → TF-IDF → Multinomial Naive Bayes → Prediction**
+
+The system provides:
+
+* 🟢 REAL / 🔴 FAKE classification
+* 📊 Confidence percentage
+* 💡 Prediction explanation
+* 🔢 Word count
+* 🧠 Model information
+
+📌 **Note:** The prediction is an AI-assisted classification based on patterns learned from the training dataset. It does not independently verify whether a claim is factually true.
+
+---
+
+## ⚙️ Features
+
+* 📰 Text-based news analysis
+* 🧹 Automatic text preprocessing
+* 🔤 Tokenization
+* 🚫 Stop-word removal
+* 🌱 Simple stemming
+* 📊 TF-IDF feature extraction
+* 🧠 Multinomial Naive Bayes classification
+* 📈 Confidence score
+* 💡 Prediction explanation
+* 🔢 Word count
+* 📋 Model information dashboard
+* 🔌 REST API
+* ❤️ Health check endpoint
+* 📱 Responsive web interface
+* ☁️ Cloud deployment using Render
+
+---
+
+## 🛠️ Tech Stack
+
+### Backend
+
+* Java 17+
+* Spring Boot
+* Maven
+
+### Machine Learning
+
+* Natural Language Processing (NLP)
+* TF-IDF Vectorization
+* Multinomial Naive Bayes
+
+### Frontend
+
+* HTML
+* CSS
+* JavaScript
+
+### Deployment
+
+* Docker
+* Render
+
+### Testing
+
+* JUnit
+
+---
+
+## 🧠 Model Details
+
+* **Model:** Multinomial Naive Bayes
+* **Feature Extraction:** TF-IDF
+* **Task:** Binary Text Classification
+* **Classes:** REAL, FAKE
+* **Training Examples:** 10,269
+* **Vocabulary Size:** 9,066
+* **Validation Accuracy:** 59.7%
+* **Dataset:** LIAR benchmark-derived dataset
+* **Train/Validation Split:** 80/20
+* **Random Seed:** 42
+
+📌 The reported accuracy is measured on the project's held-out validation split. It should not be interpreted as the percentage of factual claims correctly verified.
+
+---
+
+## 📂 Dataset Information
+
+* **Source:** LIAR benchmark dataset
+* The original dataset contains labeled statements.
+* The labels were converted into two categories for this project.
+
+### Label Mapping
+
+* `true` → REAL
+* `mostly-true` → REAL
+* `half-true` → REAL
+* `barely-true` → FAKE
+* `false` → FAKE
+* `pants-fire` → FAKE
+
+The final dataset contains **12,836 data records**.
+
+---
+
+## 📁 Project Structure
+
+```text
+TruthLens-Fake-News-Detection/
+│
+├── README.md
+├── pom.xml
+├── Dockerfile
+│
+├── docs/
+│   └── REPORT_OUTLINE.md
+│
+└── src/
+    ├── main/
+    │   ├── java/com/fakenews/
+    │   │   ├── FakeNewsApplication.java
+    │   │   │
+    │   │   ├── controller/
+    │   │   │   ├── NewsController.java
+    │   │   │   └── GlobalExceptionHandler.java
+    │   │   │
+    │   │   ├── ml/
+    │   │   │   ├── ModelService.java
+    │   │   │   ├── TextPreprocessor.java
+    │   │   │   ├── TfidfVectorizer.java
+    │   │   │   └── NaiveBayesClassifier.java
+    │   │   │
+    │   │   └── model/
+    │   │       ├── PredictionRequest.java
+    │   │       └── PredictionResponse.java
+    │   │
+    │   └── resources/
+    │       ├── application.properties
+    │       ├── data/
+    │       │   └── news_dataset.csv
+    │       └── static/
+    │           ├── index.html
+    │           ├── style.css
+    │           └── script.js
+    │
+    └── test/
+        └── java/com/fakenews/ml/
+            └── TextPreprocessorTest.java
 ```
 
-## Run locally
+---
 
-Clone the repository:
+## 🚀 How to Run the Project
+
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/fake-news-detector.git
-cd fake-news-detector
+git clone https://github.com/Vanyaa14/TruthLens-Fake-News-Detection.git
 ```
 
-Build:
+```bash
+cd TruthLens-Fake-News-Detection
+```
+
+### 2. Build the Project
 
 ```bash
 mvn clean package
 ```
 
-Run:
+### 3. Run the Application
 
 ```bash
 java -jar target/fake-news-detector-1.0.0.jar
 ```
 
-Open in your browser:
+### 4. Open the Application
+
+Open your browser and visit:
 
 ```text
 http://localhost:8080
 ```
 
-## Run directly with Maven
+---
 
-```bash
-mvn spring-boot:run
+## 🖥️ Application Workflow
+
+1. User enters news text
+2. Text is sent to the Spring Boot backend
+3. Text preprocessing is performed
+4. Unnecessary characters are removed
+5. Stop words are removed
+6. Text is tokenized and normalized
+7. TF-IDF converts the text into numerical features
+8. Multinomial Naive Bayes analyzes the features
+9. The system predicts REAL or FAKE
+10. Confidence score is calculated
+11. Explanation and result are displayed to the user
+
+---
+
+## 🔌 API Endpoints
+
+### Predict News
+
+```text
+POST /api/predict
 ```
 
-Then open `http://localhost:8080`.
-
-## API
-
-### Prediction
-
-`POST /api/predict`
-
-Example:
-
-```bash
-curl -X POST http://localhost:8080/api/predict \
-  -H "Content-Type: application/json" \
-  -d "{\"text\":\"The national weather agency issued a forecast for heavy rainfall this week.\"}"
-```
-
-Example response:
+Example request:
 
 ```json
 {
-  "prediction": "REAL",
-  "confidence": 78.4,
-  "explanation": "The wording contains patterns that are more similar to the REAL examples in the training data.",
-  "wordCount": 12,
-  "model": "TF-IDF + Multinomial Naive Bayes"
+  "text": "The government announced a new public transport initiative."
 }
 ```
 
-### Model information
+### Model Information
 
 ```text
 GET /api/model-info
 ```
 
-### Health check
+### Health Check
 
 ```text
 GET /actuator/health
 ```
 
-## Dataset
+---
 
-The repository contains a **small synthetic educational dataset** in:
+## 📊 Results
 
-```text
-src/main/resources/data/news_dataset.csv
-```
+The system successfully:
 
-The dataset is intentionally small so the project remains easy to understand and run. For a serious ML experiment, replace it with a larger, properly sourced and verified dataset while keeping the same `text,label` structure.
+* Classifies news text into REAL or FAKE
+* Generates a confidence score
+* Provides an explanation for the prediction
+* Processes text through an NLP pipeline
+* Provides real-time results through the web interface
+* Runs as a REST-based Spring Boot application
+* Is deployed as a Docker container on Render
 
-Do not claim that the included dataset provides real-world fact-checking accuracy.
+### Model Evaluation
 
-## Project architecture
+**Validation Accuracy: 59.7%**
 
-```text
-Browser
-   |
-   | HTTP
-   v
-Spring Boot REST API
-   |
-   v
-Text Preprocessor
-   |
-   v
-TF-IDF Vectorizer
-   |
-   v
-Multinomial Naive Bayes
-   |
-   v
-REAL / FAKE + confidence
-```
+The accuracy was calculated using a held-out validation portion of the dataset.
 
-## Important files
+---
 
-```text
-src/main/java/com/fakenews/
-├── FakeNewsApplication.java
-├── controller/
-│   ├── NewsController.java
-│   └── GlobalExceptionHandler.java
-├── ml/
-│   ├── ModelService.java
-│   ├── TextPreprocessor.java
-│   ├── TfidfVectorizer.java
-│   └── NaiveBayesClassifier.java
-└── model/
-    ├── PredictionRequest.java
-    └── PredictionResponse.java
+## ⚠️ Limitations
 
-src/main/resources/
-├── application.properties
-├── data/news_dataset.csv
-└── static/
-    ├── index.html
-    ├── style.css
-    └── script.js
-```
+* The model learns linguistic patterns from the training data rather than independently checking facts.
+* Similar-looking or similarly worded news may lead to incorrect predictions.
+* Performance can vary on topics that differ significantly from the training dataset.
+* Confidence represents the model's classification confidence, not factual certainty.
+* The current model has a validation accuracy of 59.7%.
+* Important news claims should always be verified using reliable and trusted sources.
 
-## Deploy with Docker
+---
 
-Build:
+## 🔮 Future Scope
 
-```bash
-docker build -t fake-news-detector .
-```
+* 🌐 Integration with trusted fact-checking sources
+* 📰 Real-time news verification
+* 🔗 URL-based news analysis
+* 📱 Mobile application integration
+* 🌍 Multilingual fake-news detection
+* 🤖 Transformer-based models such as BERT
+* 📊 Improved evaluation using Precision, Recall and F1-Score
+* 🔍 Explainable AI for detailed prediction reasoning
+* 🧠 Larger and more diverse training datasets
+* ☁️ Scalable cloud deployment
 
-Run:
+---
 
-```bash
-docker run -p 8080:8080 fake-news-detector
-```
+## 🎓 Learning Outcomes
 
-Open:
+* Understanding Natural Language Processing concepts
+* Implementation of TF-IDF
+* Understanding Multinomial Naive Bayes
+* Working with real-world datasets
+* Building REST APIs using Spring Boot
+* Integrating Machine Learning with Java
+* Creating responsive web interfaces
+* Testing Java applications using JUnit
+* Dockerizing a Spring Boot application
+* Deploying applications to the cloud
+* Understanding memory-efficient Machine Learning implementation
 
-```text
-http://localhost:8080
-```
+---
 
-The Docker image also respects the `PORT` environment variable, which is useful on cloud platforms.
+## 🌐 Deployment
 
-## Deploying to a cloud service
+TruthLens is deployed using **Docker and Render**.
 
-This project includes a `Dockerfile`, so use a cloud service that supports Docker containers.
+### Live Application
 
-Generic deployment process:
+👉 https://truthlens-fake-news-detection-x344.onrender.com
 
-1. Create a public GitHub repository.
-2. Push this project to the repository.
-3. Create a new web service on your chosen cloud platform.
-4. Connect the GitHub repository.
-5. Select Docker/container deployment if the platform asks for a runtime.
-6. Use the platform-provided port environment variable if required.
-7. Deploy.
-8. Open the generated public HTTPS URL.
-9. Test `/actuator/health` and the web interface.
+The application can be accessed directly through a web browser without requiring local installation.
 
-Do not commit passwords, API keys, tokens, or other secrets to GitHub.
+---
 
-## GitHub submission
+## 👩‍💻 Developed By
 
-The repository must be public.
+**Vanya Singh**
 
-Submit only the repository root URL, for example:
+---
 
-```text
-https://github.com/YOUR_USERNAME/fake-news-detector
-```
+## 🌍 Conclusion
 
-Do not submit:
+TruthLens demonstrates how Artificial Intelligence, Natural Language Processing, and Machine Learning can be applied to the problem of misleading information.
 
-```text
-https://github.com/YOUR_USERNAME/fake-news-detector/tree/main
-```
+The system provides an easy-to-use platform where users can submit news text and receive an AI-assisted **REAL or FAKE classification**, along with confidence and explanation.
 
-## Suggested project report sections
+TruthLens is designed as an **assistive analysis tool** and encourages users to verify important information through trusted and reliable sources.
 
-1. Title
-2. Abstract
-3. Problem Statement
-4. Objectives
-5. Existing System
-6. Proposed System
-7. Technologies Used
-8. System Architecture
-9. Dataset
-10. Data Preprocessing
-11. TF-IDF
-12. Naive Bayes Algorithm
-13. Implementation
-14. Testing
-15. Evaluation Metrics
-16. Screenshots
-17. Limitations
-18. Future Scope
-19. Conclusion
-20. References
+---
 
-## Future scope
+## 💬 Quote
 
-- Train on a substantially larger verified dataset.
-- Add source credibility signals.
-- Add multilingual support.
-- Add explainable feature-level analysis.
-- Add fact-checking source integration.
-- Add database-backed prediction history.
-- Add user authentication if required.
+> **"Analyze Responsibly. Verify What Matters."** 📰🔍
 
-## License
-
-For academic/educational use. Replace the dataset with properly licensed data before public commercial use.
+---
